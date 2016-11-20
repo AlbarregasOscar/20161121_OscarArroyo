@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : verCuota
+    Created on : 18-nov-2016, 11:41:37
+    Author     : Oscar
+-->
+<jsp:root   xmlns:jsp="http://java.sun.com/JSP/Page"
+            xmlns:c="http://java.sun.com/jsp/jstl/core"
+            xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+            version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" />
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <html>
+        <head>
+            <link rel="stylesheet" href="../../CSS/estilos.css" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Presupuesto</title>  
+        </head>
+        <body>
+            <div id="contenedor">
+                <fmt:setLocale value="${eleccion.idioma}"/>
+                <fmt:setBundle basename="${eleccion.idioma}" var="lang"/>
+                <jsp:include page="../../INC/cabecera.jspx"/>
+                <h2><fmt:message key="Gracias" bundle="${lang}"/></h2>
+                <h3><fmt:message key="Continuacion" bundle="${lang}"/></h3>
+                <c:if test="${eleccion.edificio}">
+                    <p><fmt:message key="CosteEdi" bundle="${lang}"/><fmt:formatNumber type="currency" maxFractionDigits="2" value="${prima}" /> </p>
+                </c:if>
+                <c:if test="${eleccion.contenido}">
+                    <p><fmt:message key="CosteCon" bundle="${lang}"/><fmt:formatNumber type="currency" maxFractionDigits="2" value="${prima2}" /> </p>
+                </c:if>
+                <jsp:scriptlet>session.invalidate();</jsp:scriptlet>
+                <a href="../../index.jspx"><fmt:message key="Enlace" bundle="${lang}"/></a>
+                <jsp:include page="../../INC/pie.jspx"/>
+            </div>
+        </body>
+    </html>
+
+
+</jsp:root>

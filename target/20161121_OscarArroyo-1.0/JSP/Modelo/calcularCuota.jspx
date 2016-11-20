@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : verCuota
+    Created on : 19-nov-2016, 19:10:23
+    Author     : Oscar
+-->
+<jsp:root   xmlns:jsp="http://java.sun.com/JSP/Page"
+            xmlns:c="http://java.sun.com/jsp/jstl/core"
+            version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" />
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <c:if test="${eleccion.edificio}">
+        <c:set var="cuotaBasica" value="${edificio.valor*0.005}"/>
+        <c:choose>
+            <c:when test="${edificio.tipoEdificio=='piso'}" >
+                <c:set var="prima" value="${cuotaBasica*0.95}"/>
+            </c:when>
+            <c:when test="${edificio.tipoEdificio=='casa'}" >
+                <c:set var="prima" value="${cuotaBasica*1}"/>
+            </c:when>
+            <c:when test="${edificio.tipoEdificio=='adosado'}" >
+                <c:set var="prima" value="${cuotaBasica*1.05}"/>
+            </c:when>
+            <c:when test="${edificio.tipoEdificio=='duplex'}" >
+                <c:set var="prima" value="${cuotaBasica*1.10}"/>
+            </c:when>
+            <c:when test="${edificio.tipoEdificio=='chalet'}" >
+                <c:set var="prima" value="${cuotaBasica*1.20}"/>
+            </c:when>
+        </c:choose>
+        <c:set var="prima" value="${prima+(edificio.habitaciones*(prima/100))}"/>
+        <c:choose>
+            <c:when test="${edificio.fechaConstruccion eq 1949}" >
+                <c:set var="prima" value="${prima*0.09}"/>
+            </c:when>
+            <c:when test="${edificio.fechaConstruccion eq 1950}" >
+                <c:set var="prima" value="${prima+(prima*0.06)}"/>
+            </c:when>
+            <c:when test="${edificio.fechaConstruccion eq 1991}" >
+                <c:set var="prima" value="${prima+(prima*0.04)}"/>
+            </c:when>
+            <c:when test="${edificio.fechaConstruccion eq 2006 }" >
+                <c:set var="prima" value="${prima+(prima*0.02)}"/>
+            </c:when>
+            <c:when test="${edificio.fechaConstruccion eq 2016}" >
+                <c:set var="prima" value="${prima+(prima*0.01)}"/>
+            </c:when>
+        </c:choose>
+        <c:if test="${edificio.tipoConstruccion=='madera'}">
+            <c:set var="prima" value="${prima+(prima*0.1)}"/>
+        </c:if>
+    </c:if>
+    <c:if test="${eleccion.contenido}">
+        <c:set var="prima2" value="${contenido.cantidad*0.008}"/> 
+        <c:if test="${contenido.accidentales}">
+            <c:set var="prima2" value="${prima2*1.25}"/>
+        </c:if>
+        <c:choose>
+            <c:when test="${contenido.franquicia=='500'}">
+                <c:set var="prima2" value="${prima2-(prima2*0.1)}"/>
+            </c:when> 
+            <c:when test="${contenido.franquicia=='1000'}">
+                <c:set var="prima2" value="${prima2-(prima2*0.2)}"/>
+            </c:when>
+        </c:choose>
+    </c:if>
+    <c:set var="prima2" scope="session" value="${prima2}"/>
+    <c:set var="prima" scope="session" value="${prima}"/>
+    <c:redirect url="../Vistas/verCuota.jspx"/>
+
+</jsp:root>

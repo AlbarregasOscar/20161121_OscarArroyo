@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : index
+    Created on : 18-nov-2016, 11:18:33
+    Author     : Oscar
+-->
+<jsp:root   xmlns:jsp="http://java.sun.com/JSP/Page"
+            xmlns:c="http://java.sun.com/jsp/jstl/core"
+            xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+            version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" />
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+
+
+    <!-- any content can be specified here, e.g.: -->
+    <html>
+        <head>
+            <link rel="stylesheet" href="../../CSS/estilos.css" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Pagina principal</title>  
+        </head>
+        <body>
+            <div id="contenedor">
+                <fmt:setLocale value="${eleccion.idioma}"/>
+                <fmt:setBundle basename="${eleccion.idioma}" var="lang"/>
+
+                <jsp:include page="../../INC/cabecera.jspx"/>     
+                <h2><fmt:message key="Elija" bundle="${lang}"/></h2>
+                <h3><fmt:message key="Marque" bundle="${lang}"/></h3>   
+                <form method="post" action="../Controladores/Eleccion.jspx">
+                    <fieldset>
+                        <legend>¿<fmt:message key="Que" bundle="${lang}"/>?</legend>
+                        <input type="checkbox" name="edificio" checked="checked"/><fmt:message key="edificio" bundle="${lang}"/><br/>
+                        <input type="checkbox" name="contenido" checked="checked"/><fmt:message key="contenido" bundle="${lang}"/>
+                        <br/>
+                        <fmt:message key="enviar" bundle="${lang}" var="enviar"/>
+                        <input type="submit" name="enviar" value="${enviar}"/>
+                    </fieldset>
+                </form>
+                <jsp:include page="../../INC/pie.jspx"/>
+            </div>
+        </body>
+    </html>
+
+</jsp:root>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : idioma
+    Created on : 20-nov-2016, 13:09:32
+    Author     : Oscar
+-->
+<jsp:root   xmlns:jsp="http://java.sun.com/JSP/Page"
+            xmlns:c="http://java.sun.com/jsp/jstl/core"
+            xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+            version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" />
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <link rel="stylesheet" href="CSS/estilos.css" />
+            <title>Index</title>
+        </head>
+        <body>
+            <div id="contenedor">
+                <jsp:include page="INC/cabecera.jspx"/>
+                <h1>Menu de paises</h1>
+                <form method="post" action="JSP/Controladores/EleccionIdioma.jspx">
+                    <fieldset>
+                        <label> Selecciona pais </label>
+                        <br/>
+                        <input type="radio" name="idioma" value="es_ES" checked="checked"/>Español <br/>
+                        <input type="radio" name="idioma" value="en_GB"/>Ingles
+                        <br/>
+                        <input type="submit" name="continuar" value="Continuar"/>
+                    </fieldset>
+                </form>
+                <jsp:include page="INC/pie.jspx"/>
+            </div>
+        </body>
+    </html>
+
+
+</jsp:root>

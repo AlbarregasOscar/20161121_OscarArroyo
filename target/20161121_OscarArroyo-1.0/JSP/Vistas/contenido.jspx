@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : contenido
+    Created on : 18-nov-2016, 11:42:22
+    Author     : Oscar
+-->
+<jsp:root   xmlns:jsp="http://java.sun.com/JSP/Page"
+            xmlns:c="http://java.sun.com/jsp/jstl/core"
+            xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+            version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" />
+    <jsp:directive.page isELIgnored="false" />
+    <jsp:output omit-xml-declaration="false"
+                doctype-root-element="html"
+                doctype-public="-//W3C//DTD XHTML 1.1//EN"
+                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd" />
+
+
+    <!-- any content can be specified here, e.g.: -->
+    <html>
+        <head>
+            <link rel="stylesheet" href="../../CSS/estilos.css" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Seguro de contenido</title>  
+        </head>
+        <body>
+            <fmt:setLocale value="${eleccion.idioma}"/>
+            <fmt:setBundle basename="${eleccion.idioma}" var="lang"/>
+            <div id="contenedor">
+                <jsp:include page="../../INC/cabecera.jspx"/>
+                <h2><fmt:message key="detalles" bundle="${lang}"/></h2>
+                <h3><fmt:message key="seleccione" bundle="${lang}"/></h3>
+                <form method="post" action="../Controladores/Contenido.jspx">
+                    <fieldset>
+                        <table>
+                            <tr>
+                                <td><fmt:message key="cubrir" bundle="${lang}"/></td>
+                                <td><input type="checkbox" name="accidentales"/></td>
+                            </tr>
+                            <tr>
+                                <td><fmt:message key="cantidad" bundle="${lang}"/></td>
+                                <td><select name="cantidad">
+                                        <option value="10000">10.000</option>
+                                        <option value="20000">20.000</option>
+                                        <option value="30000">30.000</option>
+                                        <option value="50000">50.000</option>
+                                        <option value="100000">100.000</option>
+                                    </select> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><fmt:message key="Franquicia" bundle="${lang}"/></td>
+                                <td><input type="radio" name="franquicia" checked="checked"/><fmt:message key="Ninguna" bundle="${lang}"/><br/>
+                                    <input type="radio" name="franquicia" value="500"/>500<br/>
+                                    <input type="radio" name="franquicia" value="1000"/>1.000
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <fmt:message key="enviar" bundle="${lang}" var="enviar"/>
+                                    <input type="submit" name="enviar" value="${enviar}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+                <jsp:include page="../../INC/pie.jspx"/>
+            </div>
+        </body>
+    </html>
+
+</jsp:root>
