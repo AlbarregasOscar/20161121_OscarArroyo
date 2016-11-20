@@ -35,7 +35,7 @@
         <c:set var="prima" value="${prima+(edificio.habitaciones*(prima/100))}"/>
         <c:choose>
             <c:when test="${edificio.fechaConstruccion eq 1949}" >
-                <c:set var="prima" value="${prima*0.09}"/>
+                <c:set var="prima" value="${prima+(prima*0.09)}"/>
             </c:when>
             <c:when test="${edificio.fechaConstruccion eq 1950}" >
                 <c:set var="prima" value="${prima+(prima*0.06)}"/>
