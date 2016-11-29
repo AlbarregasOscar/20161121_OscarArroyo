@@ -11,6 +11,7 @@ package es.albarregas.beans;
  */
 public class ContenidoBean {
     private boolean accidentales;
+    // ESTAS CANTIDADES TENIAN QUE SER double
     private int cantidad;
     private String franquicia;
 
@@ -37,5 +38,5 @@ public class ContenidoBean {
     public void setFranquicia(String franquicia) {
         this.franquicia = franquicia;
     }
-    
+
 }

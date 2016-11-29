@@ -14,6 +14,7 @@ public class EdificioBean {
     private int habitaciones;
     private int fechaConstruccion;
     private String tipoConstruccion;
+    // ESTA CANTIDAD TENIA QUE SER double
     private int valor;
 
     public String getTipoEdificio() {
@@ -55,5 +56,5 @@ public class EdificioBean {
     public void setValor(int valor) {
         this.valor = valor;
     }
-    
+
 }
